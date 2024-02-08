@@ -1,7 +1,6 @@
 import oneportSvg from "../assets/svg/oneport-logo.e6a157f11962b2450e0d6754d4a6f4bd.svg";
 import Close from "../assets/svg/close.svg";
 import { PropType } from "./navbar";
-// import CaretRight from "../assets/svg/caret-right.svg";
 
 const MiniNavigationBar = ({ onTap }: PropType) => {
   return (
