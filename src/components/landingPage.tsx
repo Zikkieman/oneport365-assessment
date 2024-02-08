@@ -1,45 +1,13 @@
-import { useState, ChangeEvent, useContext, useEffect } from "react";
+import { useState } from "react";
 import Ship from "../assets/svg/colored-ship.svg";
 import WhiteShip from "../assets/svg/ship.svg";
 import GPS from "../assets/svg/gps.svg";
 import WhiteGPS from "../assets/svg/whiteGps.svg";
 import Caret from "../assets/svg/downCaret.svg";
 import GreenArrow from "../assets/svg/greenArrow.svg";
-import { ParameterContext } from "../context/store";
-
-const today = new Date();
-const formattedDate = today.toISOString().slice(0, 10);
 
 const LandingPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
-  const [selectedDate, setSelectedDate] = useState(formattedDate);
-  const {
-    loading,
-    date,
-    destination,
-    containerSize,
-    setLoading,
-    setDate,
-    setDestination,
-    setContainerSize,
-  } = useContext(ParameterContext);
-
-  useEffect(() => {
-    setDate(selectedDate);
-  }, [selectedDate]);
-
-  const handleDateChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSelectedDate(event.target.value);
-  };
-  const handleLoadingChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setLoading(event.target.value);
-  };
-  const handleDestinationChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setDestination(event.target.value);
-  };
-  const handleContainerSizeChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setContainerSize(event.target.value);
-  };
 
   return (
     <div className=" mx-5 max-lg:w-[500px] max-md:w-full mt-5 ">
@@ -77,8 +45,6 @@ const LandingPage = () => {
             <div className="border flex items-center rounded-md">
               <input
                 className="p-3 outline-none w-full"
-                value={loading}
-                onChange={handleLoadingChange}
               />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
@@ -99,8 +65,6 @@ const LandingPage = () => {
             <div className="border flex items-center rounded-md">
               <input
                 className="p-3 outline-none w-full"
-                value={destination}
-                onChange={handleDestinationChange}
               />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
@@ -115,8 +79,6 @@ const LandingPage = () => {
               <input
                 type="date"
                 className="p-3 outline-none text-[#6b7280] text-sm font-light w-full"
-                value={date}
-                onChange={handleDateChange}
               />
             </div>
           </div>
@@ -128,8 +90,6 @@ const LandingPage = () => {
             <div className="border flex items-center rounded-md">
               <input
                 className="p-3 outline-none w-full"
-                value={containerSize}
-                onChange={handleContainerSizeChange}
               />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
