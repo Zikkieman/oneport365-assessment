@@ -27,7 +27,9 @@ const SpecialRates = () => {
     try {
       setIsFetching(true);
       const response = await fetch(
-        `https://test-api.oneport365.com/api/live_rates/get_special_rates_no_auth?container_size=${selectedSize}&container_type=${lowercaseSelectedType}`
+        `${
+          import.meta.env.VITE_URL
+        }/api/live_rates/get_special_rates_no_auth?container_size=${selectedSize}&container_type=${lowercaseSelectedType}`
       );
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
