@@ -10,7 +10,7 @@ const Homepage = () => {
 
   return (
     <div>
-      <div className="hero-div  relative flex flex-col">
+      <div className="hero-div  relative flex flex-col h-auto">
         <div className="flex justify-center border-b">
           <NavigationBar  onTap={setShowMiniNav} />
         </div>
@@ -21,7 +21,7 @@ const Homepage = () => {
             </div>
           </div>
         )}
-        <div className="flex justify-center mt-10">
+        <div className="flex justify-center mt-10 h-auto">
           <LandingPage />
         </div>
       </div>

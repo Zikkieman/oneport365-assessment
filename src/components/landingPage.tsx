@@ -10,7 +10,7 @@ const LandingPage = () => {
   const [selectedTab, setSelectedTab] = useState<number>(0);
 
   return (
-    <div className=" mx-5 max-lg:w-[500px] max-md:w-full mt-5 ">
+    <div className=" mx-5 max-lg:w-[500px] max-md:w-full mt-5 mb-16">
       <div className="text-center">
         <h1 className="text-[3.5rem] head-word font-bold text-white inline-block max-w-[700px] max-lg:text-[2.5rem] max-sm:text-[1.8rem]  ">
           Book Your International Shipments In Minutes
@@ -43,9 +43,7 @@ const LandingPage = () => {
               Port of Loading
             </p>
             <div className="border flex items-center rounded-md">
-              <input
-                className="p-3 outline-none w-full"
-              />
+              <input className="p-3 outline-none w-full" />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
               </div>
@@ -63,9 +61,7 @@ const LandingPage = () => {
               Port of Destination
             </p>
             <div className="border flex items-center rounded-md">
-              <input
-                className="p-3 outline-none w-full"
-              />
+              <input className="p-3 outline-none w-full" />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
               </div>
@@ -88,9 +84,7 @@ const LandingPage = () => {
               Container Size & Type
             </p>
             <div className="border flex items-center rounded-md">
-              <input
-                className="p-3 outline-none w-full"
-              />
+              <input className="p-3 outline-none w-full" />
               <div>
                 <img src={Caret} alt="" className="mx-2" />
               </div>
