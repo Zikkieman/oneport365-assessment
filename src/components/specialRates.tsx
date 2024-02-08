@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Caret from "../assets/svg/downCaret.svg";
 import { carriesArr, sizeArr, typeArr } from "../constants/size-typeArr";
 import Card from "./card";
@@ -21,35 +21,35 @@ const SpecialRates = () => {
   const totalItems = filteredData.length;
   const maxItems = showAll ? totalItems : itemsPerPage;
 
-  const handleToggleShowAll = () => {
+  const fetchData = useCallback(async () => {
+    const lowercaseSelectedType = selectedType.toLowerCase();
+
+    try {
+      setIsFetching(true);
+      const response = await fetch(
+        `https://test-api.oneport365.com/api/live_rates/get_special_rates_no_auth?container_size=${selectedSize}&container_type=${lowercaseSelectedType}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const result = await response.json();
+      if (result.status === "success") {
+        setReponseArr(result.data.rates);
+      } else {
+        setError("Fetch failed!!! Please try again.");
+      }
+    } catch (error) {
+      setError("Fetch failed!!! Please try again.");
+    } finally {
+      setIsFetching(false);
+    }
+  }, [selectedType, setError, setIsFetching, setReponseArr, selectedSize]);
+
+  const handleToggleShowAll = useCallback(() => {
     setShowAll((prevShowAll) => !prevShowAll);
-  };
+  }, [showAll, setShowAll]);
 
   useEffect(() => {
-    const lowercaseSelectedType = selectedType.toLowerCase();
-    const fetchData = async () => {
-      try {
-        setIsFetching(true);
-        const response = await fetch(
-          `https://test-api.oneport365.com/api/live_rates/get_special_rates_no_auth?container_size=${selectedSize}&container_type=${lowercaseSelectedType}`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        const result = await response.json();
-        if (result.status === "success") {
-          setReponseArr(result.data.rates);
-        } else {
-          setError("Fetch failed!!! Please try again.");
-        }
-      } catch (error) {
-        console.error("Error:", error);
-        setError("Fetch failed!!! Please try again.");
-      } finally {
-        setIsFetching(false);
-      }
-    };
-
     fetchData();
   }, [selectedSize, selectedType]);
 
